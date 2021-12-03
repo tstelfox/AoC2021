@@ -1,4 +1,5 @@
 
+from itertools import combinations
 
 lines = open('inputfile', mode = 'r').read().split()
 
