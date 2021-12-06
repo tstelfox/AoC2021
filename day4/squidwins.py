@@ -7,10 +7,12 @@ def	calculate_points(grid, winner):
 		for i in row:
 			if i != 'x':
 				points += int(i)
-	print(int(winner) * points)
+	answer = int(winner) * points
+	print('Have the answer, good man:')
+	print(answer)
 	return True
 
-def	check_winner(grids, winner):
+def	check_winner(grids, winner, cnt_grids, already_won):
 	g = 0
 	bingo = 0
 	for grid in grids:
@@ -21,7 +23,9 @@ def	check_winner(grids, winner):
 				if grid[h][i] == 'x':
 					bingo += 1
 				if bingo == 5:
-					return calculate_points(grid, winner)
+					calculate_points(grid, winner)
+					grids[g] = []
+					# return True
 				h += 1
 			i += 1
 			h = 0
@@ -32,7 +36,9 @@ def	check_winner(grids, winner):
 				if grid[h][i] == 'x':
 					bingo += 1
 				if bingo == 5:
-					return calculate_points(grid, winner)
+					calculate_points(grid, winner)
+					grids[g] = []
+					# return True
 				i += 1
 			h += 1
 			i = 0
@@ -40,7 +46,8 @@ def	check_winner(grids, winner):
 		bingo = 0
 		g += 1
 
-def	solve_grids(grids, answers):
+def	solve_grids(grids, answers, cnt_grids):
+	already_won = 0
 	for num in answers:
 		g = 0
 		for grid in grids:
@@ -50,8 +57,8 @@ def	solve_grids(grids, answers):
 						winner = num
 						grids[g][k][i] = 'x'
 			g += 1
-		if check_winner(grids, winner) is True:
-			return
+		if check_winner(grids, winner, cnt_grids, already_won) is True:
+			already_won += 1
 		
 		
 
@@ -71,14 +78,17 @@ grids = [line.split() for grid in grids for line in grid]
 grid = []
 realgrids = []
 i = 0
+cnt_grids = 0
 for row in grids:
+	
 	if i != 0:
 		grid.append(row)
 	i += 1
 	if i == 6:
 		i = 0
+		cnt_grids += 1
 		realgrids.append(grid)
 		grid = []
 
-solve_grids(realgrids, answers)
+solve_grids(realgrids, answers, cnt_grids)
 
