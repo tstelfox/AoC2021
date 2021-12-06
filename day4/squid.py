@@ -3,9 +3,32 @@
 from array import *
 
 
-def	solve_grids(grids):
-	for grid in grids:
-		print(grid)
+def	solve_grids(grids, answers):
+	
+	# for i in range(len(answers)):
+	# 	num = answers[i]
+	# 	g = 0
+	# 	for grid in grids:
+
+	
+	
+	for num in answers:
+		g = 0
+		for grid in grids:
+			for i in range(len(grid)):
+				if i == 0:
+					i += 1
+				for k in range(6):
+					print(grids[g][k])
+					# Getting there?
+					# if num == grid[g][i][k]:
+						# print("Pino sei grande")
+						# print(grid[i][k])
+						# print(i, k)
+						# grids[g][i][k] = 'x'
+			g += 1
+	# print(grids)
+		
 		
 
 fp = open('day4/inputfile', mode = 'r')
@@ -15,13 +38,18 @@ answers = list(map(str.strip, answers))
 
 grid_data = fp.readlines()
 
-# full_input = [map(str, x.split()) for x in grid_data]
-
 grids = [grid_data[i: i + 6] for i in range(0, len(grid_data), 6)]
 grids = [list(map(str.strip, grid)) for grid in grids]
-# grids = []
-# grid = []
 
+grids = [line.split() for grid in grids for line in grid]
+	# for line in gr()id:
+	# 	line.split
+
+
+
+solve_grids(grids, answers)
+
+# print(grids)
 
 # for line in grid_data:
 # 	if i == 6:
@@ -31,7 +59,7 @@ grids = [list(map(str.strip, grid)) for grid in grids]
 # 	grid.append(line.split())
 # 	i += 1
 
-print('grid 1 is:', grids[3])
+print(grids[0])
 
 # print(grids)
 
