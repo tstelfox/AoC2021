@@ -25,7 +25,6 @@ def	check_winner(grids, winner, cnt_grids, already_won):
 				if bingo == 5:
 					calculate_points(grid, winner)
 					grids[g] = []
-					# return True
 				h += 1
 			i += 1
 			h = 0
@@ -38,7 +37,6 @@ def	check_winner(grids, winner, cnt_grids, already_won):
 				if bingo == 5:
 					calculate_points(grid, winner)
 					grids[g] = []
-					# return True
 				i += 1
 			h += 1
 			i = 0
