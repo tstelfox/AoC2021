@@ -30,22 +30,20 @@ def	trace_line(grid, fromx, fromy, tox, toy):
 	fromy = int(fromy)
 	tox = int(tox)
 	toy = int(toy)
-	# finalx = int(max(fromx, tox))
-	# startx = int(min(fromx, tox))
-	# finaly = int(max(fromy, toy))
-	# starty = int(min(fromy, toy))
+	finalx = int(max(fromx, tox))
+	startx = int(min(fromx, tox))
+	finaly = int(max(fromy, toy))
+	starty = int(min(fromy, toy))
 
-	if tox > fromx and toy < fromy:
-		# Other more annoying calcs
-	else:
-		while startx <= finalx and starty <= finaly:
-			grid[starty][startx] = 1 if grid[starty][startx] == 0 else grid[starty][startx] + 1
-			if starty == finaly and startx == finalx:
-				break
-			if startx < finalx:
-				startx += 1
-			if starty < finaly:
-				starty += 1
+	
+	while startx <= finalx and starty <= finaly:
+		grid[starty][startx] = 1 if grid[starty][startx] == 0 else grid[starty][startx] + 1
+		if starty == finaly and startx == finalx:
+			break
+		if startx < finalx:
+			startx += 1
+		if starty < finaly:
+			starty += 1
 	return grid
 
 
