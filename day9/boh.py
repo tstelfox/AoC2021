@@ -57,8 +57,17 @@ def fakefloodfill(floor):
     return dangerdangerhighvoltage
 
 
+def hole(floor, x, y):
+
+
+
 def realfloodfill(floor):
-    conche = []
+    spelonche = []
+    cnt = 0
+    size = 0
+
+
+
 
     return 'Do stuff'
 
