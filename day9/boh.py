@@ -57,14 +57,32 @@ def fakefloodfill(floor):
     return dangerdangerhighvoltage
 
 
-def hole(floor, x, y):
-
-
-
-def realfloodfill(floor):
-    spelonche = []
-    cnt = 0
+def dfs(grid):
     size = 0
+    for y in range(len(grid)):
+        for x in range(len(grid[0])):
+            size = dfs(grid, y, x)
+    return size
+
+def dfs(grid, y, x):
+    if x < 0 or y < 0 or x >= len(grid[0]) or y >= len(grid): return 0
+    count = grid[y][x]
+
+#     https://www.lavivienpost.com/depth-first-search-and-matrix/
+
+
+
+
+
+
+
+
+def depth_first(floor):
+    spelonche = []
+    # size = 0
+    visited = set()
+    print(dfs(floor))
+
 
 
 
@@ -77,4 +95,4 @@ if __name__ == '__main__':
     for line in open('inputfile').read().splitlines():
         floor.append([int(x)for x in line])
     # print(fakefloodfill(floor))
-    print(realfloodfill(floor))
+    print(depth_first(floor))
