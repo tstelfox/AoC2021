@@ -33,17 +33,8 @@
 #     return False
 
 
-# def fakefloodfill(floor):
-#     dangerdangerhighvoltage = 0
-#
-#     for y, row in enumerate(floor):
-#         for x, square in enumerate(row):
-#             if lowest(floor, x, y):
-#                 dangerdangerhighvoltage += square + 1
-#     return dangerdangerhighvoltage
-
-
 def fakefloodfill(floor):
+    fondali = []
     dangerdangerhighvoltage = 0
     for y, row in enumerate(floor):
         for x, square in enumerate(row):
@@ -53,46 +44,55 @@ def fakefloodfill(floor):
             if (y > 0 and floor[y-1][x] <= square) or (y < len(floor) - 1 and floor[y + 1][x] <= square):
                 lowestest = False
             if lowestest:
+                fondali.append(x)
+                fondali.append(y)
                 dangerdangerhighvoltage += square + 1
-    return dangerdangerhighvoltage
+    # return dangerdangerhighvoltage  # This is for exercise one
+    return fondali
 
 
-def dfs(grid):
+def idunno(grid, basin):
     size = 0
-    for y in range(len(grid)):
-        for x in range(len(grid[0])):
-            size = dfs(grid, y, x)
+    for y, row in enumerate(grid):
+        for x, square in enumerate(row):
+            if grid[y][x] == 9:
+                break
+            # print(basin[1], basin[0])
+            size += dfs(grid, basin[1], basin[0])
     return size
 
 def dfs(grid, y, x):
-    if x < 0 or y < 0 or x >= len(grid[0]) or y >= len(grid): return 0
-    count = grid[y][x]
+    if x < 0 or y < 0 or x >= len(grid[0]) or y >= len(grid) or grid[y][x] == 9 or grid[y][x] == 99:
+        return 0
+    count = 1
+    grid[y][x] = 99  # visited
+    i = y - 1
+    while i < y + 1:
+        j = x - 1
+        while j < x + 1:
+            count += dfs(grid, i, j)
+            j += 1
+        i += 1
+    return count
 
 #     https://www.lavivienpost.com/depth-first-search-and-matrix/
 
+# Start from the lowest points in the grid.
 
-
-
-
-
-
-
-def depth_first(floor):
-    spelonche = []
-    # size = 0
-    visited = set()
-    print(dfs(floor))
-
-
-
-
-
-    return 'Do stuff'
 
 
 if __name__ == '__main__':
     floor = []
+    fondali = []
     for line in open('inputfile').read().splitlines():
         floor.append([int(x)for x in line])
-    # print(fakefloodfill(floor))
-    print(depth_first(floor))
+    fondali = fakefloodfill(floor)
+    # print(fondali)
+    # for basin in fondali:
+    i = 2
+    while i <= len(fondali):
+        # print(fondali[i-2:i])
+        print(idunno(floor, fondali[i-2:i]))
+        i += 2
+    print(floor)
+    # print(idunno(floor))
