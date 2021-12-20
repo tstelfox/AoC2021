@@ -12,18 +12,40 @@ def floodfill(octo_grid, x, y):
     return flashes
 
 
-def increment_octos(octo_grid):
-    flashes = 0
-    for y, row in enumerate(octo_grid):
-        for x, octo in enumerate(row):
-            flashes += floodfill(octo_grid, x, y)
-
-    for y, row in enumerate(octo_grid):
+def part1(grid, flashes):
+    for i in range(100):
+        for y, row in enumerate(grid):
+            for x, octo in enumerate(row):
+                flashes += floodfill(grid, x, y)
+        for y, row in enumerate(grid):
             for x, octo in enumerate(row):
                 if octo == -1:
-                    octo_grid[y][x] = 0
+                    grid[y][x] = 0
+    for row in grid:
+        print(row)
     return flashes
 
+
+def flash_big_boom(grid):
+    for y, row in enumerate(grid):
+        for x, octo in enumerate(row):
+            floodfill(grid, x, y)
+    for y, row in enumerate(grid):
+        for x, octo in enumerate(row):
+            if octo == -1:
+                grid[y][x] = 0
+    for row in grid:
+        for element in row:
+            if element != 0:
+                return False
+    return True
+
+
+def part2(grid, flashes):
+    for i in range(1000):
+        if flash_big_boom(grid):
+            print(grid)
+            return i + 1
 
 
 if __name__ == '__main__':
@@ -31,8 +53,5 @@ if __name__ == '__main__':
     flashes = 0
     for line in open('inputfile.txt').read().splitlines():
         grid.append([int(x) for x in line])
-    for i in range(100):
-        flashes += increment_octos(grid)
-    for row in grid:
-        print(row)
-    print(flashes)
+    # print(part1(grid, flashes))
+    print(part2(grid, flashes))
