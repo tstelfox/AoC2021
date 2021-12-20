@@ -36,6 +36,22 @@ def check_corrupt(input):
             return ret
     return 0
 
+def complete_line(lastopened):
+    # Check the last bracket opened and score according to closing bracket
+    score = 0
+    for i in range(len(lastopened)):
+        score *= 5
+        if lastopened[len(lastopened) -1] == 0:
+            score += 1
+        elif lastopened[len(lastopened) -1] == 1:
+            score += 2
+        elif lastopened[len(lastopened) -1] == 2:
+            score += 3
+        elif lastopened[len(lastopened) -1] == 3:
+            score += 4
+        lastopened.pop()
+    return score
+
 def check_rest(input):
     lastopened = []
     score = 0
@@ -57,18 +73,7 @@ def check_rest(input):
             lastopened.pop()
         if bracket == '>':
             lastopened.pop()
-    # Check the last bracket opened and score according to closing bracket
-    for i in range(len(lastopened)):
-        score *= 5
-        if lastopened[len(lastopened) -1] == 0:
-            score += 1
-        elif lastopened[len(lastopened) -1] == 1:
-            score += 2
-        elif lastopened[len(lastopened) -1] == 2:
-            score += 3
-        elif lastopened[len(lastopened) -1] == 3:
-            score += 4
-        lastopened.pop()
+    score = complete_line(lastopened)
     return score
 
 
