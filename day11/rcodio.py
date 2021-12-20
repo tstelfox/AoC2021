@@ -34,17 +34,16 @@ def flash_big_boom(grid):
         for x, octo in enumerate(row):
             if octo == -1:
                 grid[y][x] = 0
-    for row in grid:
-        for element in row:
-            if element != 0:
-                return False
+    result = all(element == 0 for element in row for row in grid)
+    if not result:
+        return False
     return True
 
 
 def part2(grid, flashes):
     for i in range(1000):
         if flash_big_boom(grid):
-            print(grid)
+            # print(grid)
             return i + 1
 
 
