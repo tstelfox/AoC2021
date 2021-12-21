@@ -12,20 +12,41 @@ def make_caves(lines):
         for i, thing in enumerate(connection):
             for x, item in enumerate(caves):
                 if i == 0:
-                    print("Cave", item)
-                    print("Connection", thing)
+                    # print("Cave", item)
+                    # print("Connection", thing)
                     if item[0] == thing:
-                        print("hey")
                         caves[x].append(connection[1])
                 elif i == 1:
                     if item[0] == thing:
                         caves[x].append(connection[0])
-    print(caves)
+    # caves.pop()
+    return caves
+
+
+def backin_up(nodes, current):
+    if nodes[current][0] == 'end':
+        return
+    for path in nodes[current][1:]:
+        backin_up(nodes, )
+    # count = 1
+
+    print(nodes)
+    # print(current)
+
+    # return 0
 
 
 if __name__ == '__main__':
     lines = open('testfile.txt').read().splitlines()
-    make_caves(lines)
+    caves = make_caves(lines)
+    routes = 0
+    start_id = 0
+    # end_id = 0
+    while caves[start_id][0] != 'start':
+        start_id += 1
+    # while caves[end_id][0] != 'end':
+    #     end_id += 1
+    backin_up(caves, start_id)
 
 
 
