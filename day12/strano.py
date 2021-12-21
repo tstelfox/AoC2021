@@ -22,6 +22,7 @@ def make_caves(lines):
     # caves.pop()
     return caves
 
+# Really ought to make it into a class so I can add the upper/lowercase 'flag'
 
 def backin_up(nodes, current):
     if nodes[current][0] == 'end':
