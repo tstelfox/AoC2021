@@ -2,13 +2,11 @@
 
 def make_caves(lines):
     temp = []
-    # fr = []
     lines = [x.split('-') for x in lines]
     for connection in lines:
         for thing in connection:
             if thing not in temp:
                 temp.append(thing)
-    # caves = {'Cave': val for val in temp}
     caves = [[val] for val in temp]
     # for node in caves:
 
@@ -18,7 +16,7 @@ def make_caves(lines):
         #     temp.append(connection[1])
     #     connection = connection.split('-')
     #     print(connection)
-    print(lines)
+    # print(lines)
     print(caves)
 
 
