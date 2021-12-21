@@ -8,20 +8,24 @@ def make_caves(lines):
             if thing not in temp:
                 temp.append(thing)
     caves = [[val] for val in temp]
-    # for node in caves:
-
-        # if connection[0] not in temp:
-        #     temp.append(connection[0])
-        # if connection[1] not in temp:
-        #     temp.append(connection[1])
-    #     connection = connection.split('-')
-    #     print(connection)
-    # print(lines)
+    for connection in lines:
+        for i, thing in enumerate(connection):
+            for x, item in enumerate(caves):
+                if i == 0:
+                    print("Cave", item)
+                    print("Connection", thing)
+                    if item[0] == thing:
+                        print("hey")
+                        caves[x].append(connection[1])
+                elif i == 1:
+                    if item[0] == thing:
+                        caves[x].append(connection[0])
     print(caves)
 
 
 if __name__ == '__main__':
     lines = open('testfile.txt').read().splitlines()
     make_caves(lines)
+
 
 
